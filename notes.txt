@@ -1,0 +1,115 @@
+<Buffer 80 80 80 80 00 00>
+
+ data[4] = 
+
+      state['button:1'] = data[4] >> 4 & 1;  //16
+      state['button:2'] = data[4] >> 5 & 1;  //32
+      state['button:3'] = data[4] >> 6 & 1;  //64
+      state['button:4'] = data[4] >> 7 & 1;  //128
+
+      state['button:L1'] = data[5] >> 0 & 1;  //1
+      state['button:R1'] = data[5] >> 1 & 1;  //2
+      state['button:L2'] = data[5] >> 2 & 1;  //4
+      state['button:R2'] = data[5] >> 4 & 1;  //8
+
+      state['button:Start'] = data[5] >> 5 & 1;  //32 0x20
+      state['button:Select'] = data[5] >> 4 & 1; //16 0x10
+      
+      state['axis:LY'] = data[1];
+      state['axis:LX'] = data[0];
+      state['axis:RY'] = data[2];
+      state['axis:RX'] = data[3];
+
+      state["button:Up"] = +(data[4] === 1;
+      state["button:Right"] = +(data[4] === 3);
+      state["button:Down"] = +(data[4] === 5);
+      state["button:Left"] = +(data[4] === 7);
+
+
+"jesstech": {
+    "vendorId": 3888,
+    "productId": 263,
+    "state": {
+      "button:1": 0,
+      "button:2": 0,
+      "button:3": 0,
+      "button:4": 0,
+
+      "button:L1": 0,
+      "button:R1": 0,
+      "button:L2": 0,
+      "button:R2": 0,
+
+      "axis:LY": 0,
+      "axis:LX": 0,
+      "axis:RY": 0,
+      "axis:RX": 0,
+
+      "button:Up": 0,
+      "button:Right": 0,
+      "button:Down": 0,
+      "button:Left": 0,
+
+      "button:Start": 0,
+      "button:Select": 0
+    },
+    "prev": {// Simple copy of state
+      "button:1": 0,
+      "button:2": 0,
+      "button:3": 0,
+      "button:4": 0,
+
+      "button:L1": 0,
+      "button:R1": 0,
+      "button:L2": 0,
+      "button:R2": 0,
+
+      "axis:LY": 0,
+      "axis:LX": 0,
+      "axis:RY": 0,
+      "axis:RX": 0,
+
+      "button:Up": 0,
+      "button:Right": 0,
+      "button:Down": 0,
+      "button:Left": 0,
+
+      "button:Start": 0,
+      "button:Select": 0
+    },
+    "update": function(data) {
+
+      var state = this.state;
+
+      state['button:1'] = data[4] >> 4 & 1;  //16
+      state['button:2'] = data[4] >> 5 & 1;  //32
+      state['button:3'] = data[4] >> 6 & 1;  //64
+      state['button:4'] = data[4] >> 7 & 1;  //128
+
+      state['button:L1'] = data[5] >> 0 & 1;  //1
+      state['button:R1'] = data[5] >> 1 & 1;  //2
+      state['button:L2'] = data[5] >> 2 & 1;  //4
+      state['button:R2'] = data[5] >> 4 & 1;  //8
+
+      state['button:Start'] = data[5] >> 5 & 1;  //32 0x20
+      state['button:Select'] = data[5] >> 4 & 1; //16 0x10
+      
+      state['axis:LY'] = data[1];
+      state['axis:LX'] = data[0];
+      state['axis:RY'] = data[2];
+      state['axis:RX'] = data[3];
+
+      state["button:Up"] = +(data[4] === 1;
+      state["button:Right"] = +(data[4] === 3);
+      state["button:Down"] = +(data[4] === 5);
+      state["button:Left"] = +(data[4] === 7);
+
+      return state;
+    },
+    "setRumble": function() {
+
+    },
+    "setLED": function(led, val) {
+
+    }
+  },
