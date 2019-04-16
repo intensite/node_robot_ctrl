@@ -6,7 +6,7 @@ const _ = require('lodash')
 
 
 const port = new SerialPort('COM8', {
-    baudRate: 9600
+    baudRate: 115200
 })
 
 const parser = port.pipe(new Readline({ delimiter: '\n' }))
@@ -44,7 +44,9 @@ ctrl.on('1:press', function () {
 
 ctrl.on('1:release', function () {
     console.log('1 was released sending G28 $ G91');
-    port.write('G28\r')
+    port.write('G90\r')
+    port.write('G28\r');
+    port.write('G1 X0 Y120 Z100\r');
     port.write('G91\r')
 });
 ctrl.on('3:press', function () {
@@ -69,30 +71,34 @@ ctrl.on('Select:release', function () {
 function moveX(o) {
     console.log(o);
     if(o.x > 128) {
-        port.write("G1 X1 F10\r")
+        port.write("G1 X1 F20\r")
     } 
     if(o.x < 128) {
-        port.write("G1 X-1 F10\r")
+        port.write("G1 X-1 F20\r")
     }
 }
 function moveY(o) {
     console.log(o);
     if(o.y > 128) {
-        port.write("G1 Y10 F20\r")
+        port.write("G1 Y1 F20\r")
     } 
     if(o.y < 128) {
-        port.write("G1 Y-10 F20\r")
+        port.write("G1 Y-1 F20\r")
     }
 }
 function moveZ(o) {
     console.log(o);
     if(o.y < 128) {
-        port.write("G1 Z10 F20\r")
+        port.write("G1 Z1 F30\r")
     } 
     if(o.y > 128) {
-        port.write("G1 Z-10 F20\r")
+        port.write("G1 Z-1 F30\r")
     }
 }
+
+function openGripper() { port.write("M3\r") }
+function closeGripper() { port.write("M5\r") }
+
 var debounceMoveX = _.throttle(moveX, 100, {
     'leading': true,
     'trailing': false}
@@ -109,14 +115,24 @@ var debounceMoveZ = _.throttle(moveZ, 300, {
 ctrl.on('JOYL:move', function(o) {
     // debounceMoveX(o);
     moveX(o);
-    debounceMoveY(o);
+    moveY(o);
+    //debounceMoveY(o);
     // console.log(o);
 });
 
 
 ctrl.on('JOYR:move', function (o) {
     console.log(o);
-    debounceMoveZ(o);
+    // debounceMoveZ(o);
+    moveZ(o);
+});
+ctrl.on('L1:press', function (o) {
+    console.log('button:L1');
+    openGripper();
+});
+ctrl.on('R1:press', function (o) {
+    console.log('button:R1');
+    closeGripper();
 });
 
 
