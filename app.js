@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // var router = express.Router();
 
 app.route("/").get(function (req, res) {
-    res.status(200).send("Welcome to our restful API");
+    res.status(200).send("Welcome to our robot restful API");
 });
 app.route("/home").get(function (req, res) {
     robot.moveHome();
@@ -62,7 +62,12 @@ app.route("/move").post(function (req, res) {
             console.log(absolutePosition);
             robot.absoluteMove(absolutePosition);
             res.status(200).send("Move Sent..");
+            
+        });
+app.route("/info").get(async function (req, res) {
 
+    const info = await robot.getPosition()
+    res.status(200).send(info);
 });
 
 
