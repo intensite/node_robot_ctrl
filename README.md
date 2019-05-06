@@ -1,7 +1,7 @@
 # node_robot_ctrl
 Robot control app using node.js
 
-This app's main goal is to serve as a back-end for a web based application to control the Ftobler's robot.  To do so it  provides a REST API to communicate with a Web base graphical user interface.  It also provides an interface to control the robot using a game controller (like xbox or playstation).
+This app's main goal is to serve as a back-end for a web based application to control the Ftobler's robot.  To do so it  provides a REST API to communicate with a Web based graphical user interface.  It also provides an interface to control the robot using a game controller (like xbox or playstation).
 
 As of now, the following API end points are defined:
 
