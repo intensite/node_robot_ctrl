@@ -20,10 +20,10 @@ As of now, the following API end points are defined:
 * POST: /move <br/>
   Move a single axis of the arm in relative mode a certain distance and a certain speed. The post data should have this format: 
     ```    
-    axis:X <br/>
-    mode:relative <br/>
-    value:150 <br/>
-    speed:100 <br/>
+    axis:X 
+    mode:relative
+    value:150
+    speed:100
     ```    
 * POST: /movefull <br/>
   Move all the arm axis to a specific absolute position.  The POST data should look like this:
