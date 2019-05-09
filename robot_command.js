@@ -78,6 +78,8 @@ class Robot {
         this.port.write('G90\r')  // Set to ABSOLUTE coordinate mode
         var gcode = 'G1' + (m.X ? ' X' + m.X : '') + (m.Y ? ' Y' + m.Y : '') + (m.Z ? ' Z' + m.Z : '') + (m.speed ? ' F' + m.speed : '');
 
+        console.log('Before send to robot..');
+        console.log(gcode);
         this.port.write(`${gcode}\r`);
         // this.getPosition(); // Return the current positions of all axis 
     }
