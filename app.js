@@ -102,7 +102,8 @@ wss.on('connection', function connection(ws) {
 
 setInterval(function () {
     wss.clients.forEach(async function each(client) {
-        current_position = await robot.getPosition()
-        client.send(current_position);
+        current_position = await robot.getPosition();
+        
+        client.send(JSON.stringify(current_position));
     });
 }, 2000)
