@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@serialport/parser-readline": "^2.0.2",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "gamecontroller": "github:intensite/node-gamecontroller#master",
     "lodash": "^4.17.13",
     "node-hid": "^0.7.7",
